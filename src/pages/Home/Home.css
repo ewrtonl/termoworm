@@ -1,0 +1,49 @@
+.home {
+  padding: 20px;
+
+  display: grid;
+  grid-template-rows: 2fr 1fr 20%;
+  justify-items: center;
+  align-items: center;
+  height: 95vh;
+}
+
+.home-title h1 {
+  /*font-family: "Lacquer", system-ui;*/
+  letter-spacing: -1px;
+  font-size: 3.5rem;
+  color: #f7ff9d;
+}
+
+.buttons-main {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  width: 100%;
+}
+
+.buttons-main button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 15px;
+  border: none;
+  border-radius: 20px;
+  background-color: #424242;
+  color: #f7ff9d;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 5px 5px 14px #343434, -5px -5px 14px #4c4c4c;
+
+  transition: all 0.2s ease;
+}
+
+.buttons-main button:hover {
+  color: #cad17f;
+  transform: scale(1.01);
+  box-shadow: inset 5px 5px 14px #343434, inset -5px -5px 14px #4c4c4c;
+}

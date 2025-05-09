@@ -1,0 +1,143 @@
+.hotpotato {
+  width: 90vw;
+  max-width: 450px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  max-height: 95vh;
+}
+
+.hotpotato-topic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.hotpotato-topic p {
+  font-family: "Lacquer", system-ui;
+  font-size: 20px;
+  color: rgba(245, 245, 245, 0.6);
+}
+
+.hotpotato-topic h2 {
+  font-size: 24px;
+  letter-spacing: -0.2px;
+  text-align: center;
+  color: #f7ff9d;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.hotpotato-topic button {
+  background: none;
+  color: #cfcfcf;
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.hotpotato-topic button:hover {
+  transform: scale(1.1);
+}
+
+.timer {
+  color: #404040;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-radius: 40px;
+  margin-top: 10px;
+
+  background: #f0f0f0;
+}
+
+.timer p {
+  font-family: "Inter", system-ui;
+  font-weight: bold;
+  font-size: 29px;
+  color: #404040;
+}
+
+.timer.timeout {
+  background-color: #ff5a5a;
+}
+
+.roundButton {
+  font-family: "Lacquer", system-ui;
+  color: #ffdd63;
+  padding: 30px;
+  width: 50%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-size: 25px;
+  margin: 0 0 30px 0;
+  transition: all 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #414141;
+  box-shadow: 6px 6px 12px #3a3a3a, -6px -6px 12px #464646;
+}
+
+.roundButton:hover {
+  transform: scale(1.01);
+  box-shadow: inset 5px 5px 14px #343434, inset -5px -5px 14px #4c4c4c;
+}
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 7px 1px;
+
+  overflow-y: auto;
+  width: 100%;
+}
+
+.letter {
+  color: #f7ff9d;
+  padding: 30px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 35px;
+  font-weight: bold;
+  width: 65px;
+  text-align: center;
+  transition: all 0.3s ease;
+
+  background: #414141;
+  box-shadow: 6px 6px 12px #3a3a3a, -6px -6px 12px #464646;
+}
+
+.letter:hover {
+  transform: scale(1.1);
+  box-shadow: inset 5px 5px 14px #343434, inset -5px -5px 14px #4c4c4c;
+  color: #494949;
+}
+
+.hidden {
+  display: none;
+}
