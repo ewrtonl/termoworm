@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import "./HotPotato.css";
 import {
   ArrowsClockwise,
@@ -6,8 +6,11 @@ import {
   HandPalm,
   HandPointing,
   Alarm,
+  ArrowLeft,
+  ArrowCounterClockwise,
 } from "@phosphor-icons/react";
 import { topics, alfa } from "../../topics";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [randomNumber, setRandomNumber] = useState<number | null>(null);
@@ -15,6 +18,10 @@ export default function Home() {
   const [time, setTime] = useState(0);
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
   const [timeOver, setTimeOver] = useState(false);
+  const [letrasAleatorias, setLetrasAleatorias] = useState<string[]>(() =>
+    shuffleArray(alfa)
+  );
+  const [letrasSelecionadas, setLetrasSelecionadas] = useState<string[]>([]);
 
   function getRandomNumber() {
     const num: number = Math.floor(Math.random() * topics.length);
@@ -30,14 +37,16 @@ export default function Home() {
   }
 
   function startTimer() {
+    setTime(10);
     const id = setInterval(() => {
       setTime((prev) => {
-        if (prev >= 9) {
+        if (prev <= 1) {
           clearInterval(id);
           setTimeOver(true);
-          return 10;
+
+          return 0;
         }
-        return prev + 1;
+        return prev - 1;
       });
     }, 1000);
     setIntervalId(id);
@@ -66,12 +75,38 @@ export default function Home() {
     return copia;
   }
 
-  const letrasAleatorias = useMemo(() => shuffleArray(alfa), []);
+  function handleNext() {
+    setGameStarted(false);
+    getRandomNumber();
+    if (intervalId) clearInterval(intervalId);
+    setTime(0);
+    setTimeOver(false);
+    setLetrasSelecionadas([]);
+    setLetrasAleatorias(shuffleArray(alfa));
+  }
+
+  function handleRestart() {
+    setGameStarted(true);
+    startTimer()
+  }
+
+  function toggleLetraSelecionada(letra: string) {
+    setLetrasSelecionadas((prev) =>
+      prev.includes(letra) ? prev.filter((l) => l !== letra) : [...prev, letra]
+    );
+  }
 
   return (
     <div className="hotpotato">
       <div className="hotpotato-topic">
-        <p>tema</p>
+        <div className="hotpotato-topic-head">
+          <Link to={"/"} className="backButton">
+            <ArrowLeft size={32} />
+          </Link>
+
+          <p>tema</p>
+        </div>
+
         <h2>{topics[randomNumber!]}</h2>
 
         <button
@@ -97,7 +132,7 @@ export default function Home() {
         onClick={handleStart}
       >
         {" "}
-        <Play size={60} weight="fill" /> start
+        <Play size={60} weight="fill" /> iniciar
       </button>
 
       <button
@@ -108,15 +143,33 @@ export default function Home() {
         <HandPalm size={60} weight="fill" /> stop
       </button>
 
-      <button className={`roundButton ${timeOver ? "" : "hidden"}`}>
+      <button
+        className={`straightButton ${timeOver ? "" : "hidden"}`}
+        onClick={handleRestart}
+      >
         {" "}
-        <HandPointing size={60} weight="fill" /> next
+        continuar rodada
+        <ArrowCounterClockwise size={35} weight="fill"/>
+      </button>
+
+      <button
+        className={`straightButton ${timeOver ? "" : "hidden"}`}
+        onClick={handleNext}
+      >
+        {" "}
+        próxima
+        <HandPointing size={35} weight="fill" className="iconHandPointing"/> 
       </button>
 
       <div className="keyboard">
         {letrasAleatorias.map((letter, index) => {
+          const isSelected = letrasSelecionadas.includes(letter);
           return (
-            <div key={index} className="letter">
+            <div
+              key={index}
+              className={`letter ${isSelected ? "selected" : ""}`}
+              onClick={() => toggleLetraSelecionada(letter)}
+            >
               <p>{letter}</p>
             </div>
           );
