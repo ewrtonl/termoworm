@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./HotPotato.css";
 import {
   ArrowsClockwise,
@@ -11,6 +11,8 @@ import {
 } from "@phosphor-icons/react";
 import { topics, alfa } from "../../topics";
 import { Link } from "react-router-dom";
+import timerSound from "../../assets/tictac.mp3";
+import endSound from "../../assets/alarm.mp3";
 
 export default function Home() {
   const [randomNumber, setRandomNumber] = useState<number | null>(null);
@@ -22,6 +24,21 @@ export default function Home() {
     shuffleArray(alfa)
   );
   const [letrasSelecionadas, setLetrasSelecionadas] = useState<string[]>([]);
+
+  const timerAudioRef = useRef<HTMLAudioElement | null>(null);
+  const endAudioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    timerAudioRef.current = new Audio(timerSound);
+    endAudioRef.current = new Audio(endSound);
+
+    if (timerAudioRef.current) timerAudioRef.current.loop = true;
+
+    return () => {
+      timerAudioRef.current?.pause();
+      endAudioRef.current?.pause();
+    };
+  }, []);
 
   function getRandomNumber() {
     const num: number = Math.floor(Math.random() * topics.length);
@@ -37,18 +54,38 @@ export default function Home() {
   }
 
   function startTimer() {
-    setTime(10);
+    setTime(15);
+
+    const timerAudio = timerAudioRef.current;
+    const endAudio = endAudioRef.current;
+
+    if (timerAudio) {
+      timerAudio.pause();
+      timerAudio.currentTime = 0;
+      timerAudio.play();
+    }
+
     const id = setInterval(() => {
       setTime((prev) => {
         if (prev <= 1) {
           clearInterval(id);
-          setTimeOver(true);
 
+          if (timerAudio) {
+            timerAudio.pause();
+            timerAudio.currentTime = 0;
+          }
+
+          if (endAudio) {
+            endAudio.play();
+          }
+
+          setTimeOver(true);
           return 0;
         }
         return prev - 1;
       });
     }, 1000);
+
     setIntervalId(id);
     setTimeOver(false);
   }
@@ -61,6 +98,13 @@ export default function Home() {
 
   function handleStop() {
     if (intervalId) clearInterval(intervalId);
+
+    const timerAudio = timerAudioRef.current;
+    if (timerAudio) {
+      timerAudio.pause();
+      timerAudio.currentTime = 0;
+    }
+
     setTime(0);
     setTimeOver(false);
     startTimer();
@@ -87,7 +131,7 @@ export default function Home() {
 
   function handleRestart() {
     setGameStarted(true);
-    startTimer()
+    startTimer();
   }
 
   function toggleLetraSelecionada(letra: string) {
@@ -149,7 +193,7 @@ export default function Home() {
       >
         {" "}
         continuar rodada
-        <ArrowCounterClockwise size={35} weight="fill"/>
+        <ArrowCounterClockwise size={35} weight="fill" />
       </button>
 
       <button
@@ -158,7 +202,7 @@ export default function Home() {
       >
         {" "}
         próxima
-        <HandPointing size={35} weight="fill" className="iconHandPointing"/> 
+        <HandPointing size={35} weight="fill" className="iconHandPointing" />
       </button>
 
       <div className="keyboard">

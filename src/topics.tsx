@@ -41,6 +41,7 @@ export const topics: string[] = [
   "Bebidas",
   "Sabores de pizza",
   "Sabores de sorvete",
+  "Tipos de queijo",
   "Estados do mundo",
   "Países do mundo",
   "Capitais do mundo",

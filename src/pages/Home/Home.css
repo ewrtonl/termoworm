@@ -47,3 +47,39 @@
   }
 
 }
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.footer a{
+  width: 30px;
+  transition: .3s;
+  color: #e6e6e6;
+}
+
+.footer a:hover{
+  transform: scale(1.1);
+}
+
+.footer img {
+  width: 35px;
+}
+
+.lang {
+  display: flex;
+  gap: 5px;
+
+  background-color: rgba(255, 255, 255, .3);
+  padding: 8px;
+  border-radius: 10px;
+
+  cursor: pointer;
+  transition: .3s;
+}
+
+.lang:hover {
+  background-color: rgba(255, 255, 255, .7);
+}
