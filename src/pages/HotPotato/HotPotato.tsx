@@ -11,6 +11,8 @@ import {
 } from "@phosphor-icons/react";
 import { topics, alfa } from "../../topics";
 import { Link } from "react-router-dom";
+import timerSound from "../../assets/tictac.mp3?url";
+import endSound from "../../assets/alarm.mp3?url";
 
 export default function Home() {
   const [randomNumber, setRandomNumber] = useState<number | null>(null);
@@ -27,8 +29,8 @@ export default function Home() {
   const endAudioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    timerAudioRef.current = new Audio("../../assets/tictac.mp3");
-    endAudioRef.current = new Audio("../../assets/alarm.mp3");
+    timerAudioRef.current = new Audio(timerSound);
+    endAudioRef.current = new Audio(endSound);
 
     if (timerAudioRef.current) timerAudioRef.current.loop = true;
 
