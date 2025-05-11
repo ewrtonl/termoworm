@@ -12,8 +12,8 @@ import {
 import { topics, alfa } from "../../topics";
 import { Link } from "react-router-dom";
 
-const timerSound = "/public/tictac.mp3";
-const endSound = "/public/alarm.mp3";
+const timerSound = "/public/tictac.mp3?url";
+const endSound = "/public/alarm.mp3?url";
 
 export default function Home() {
   const [randomNumber, setRandomNumber] = useState<number | null>(null);
