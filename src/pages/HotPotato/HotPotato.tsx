@@ -11,9 +11,8 @@ import {
 } from "@phosphor-icons/react";
 import { topics, alfa } from "../../topics";
 import { Link } from "react-router-dom";
-
-const timerSound = "/public/tictac.mp3?url";
-const endSound = "/public/alarm.mp3?url";
+import timerSound from "../../assets/tictacnew.mp3";
+import endSound from "../../assets/alarmnew.mp3";
 
 export default function Home() {
   const [randomNumber, setRandomNumber] = useState<number | null>(null);
