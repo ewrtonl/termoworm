@@ -11,8 +11,6 @@ import {
 } from "@phosphor-icons/react";
 import { topics, alfa } from "../../topics";
 import { Link } from "react-router-dom";
-import timerSoundr from "/public/tictac.mp3?url";
-import endSoundr from "/public/alarm.mp3?url";
 
 const timerSound = "/public/tictac.mp3";
 const endSound = "/public/alarm.mp3";
