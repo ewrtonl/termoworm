@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="home">
       <div className="home-title">
-        <h1>termworm</h1>
+        <h1>termoworm</h1>
       </div>
 
       <div className="buttons-main">
