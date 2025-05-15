@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import timerSound from "../../assets/tictacnew.mp3";
 import endSound from "../../assets/alarmnew.mp3";
 
-export default function Home() {
+export default function HotPotato() {
   const [randomNumber, setRandomNumber] = useState<number | null>(null);
   const [gameStarted, setGameStarted] = useState(false);
   const [time, setTime] = useState(0);
@@ -116,7 +116,7 @@ export default function Home() {
       const j = Math.floor(Math.random() * (i + 1));
       [copia[i], copia[j]] = [copia[j], copia[i]];
     }
-    return copia;
+    return copia.slice(0, 20);
   }
 
   function handleNext() {

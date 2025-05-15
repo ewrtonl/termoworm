@@ -50,9 +50,13 @@ export default function Info() {
           </p>
 
           <p>
-            🔥 Após pressionar STOP, o cronômetro é reiniciado
-            automaticamente. Você deve passar para o próximo jogador o mais
-            rápido possível.
+            💣 Nem todas as letras do alfabeto estarão disponíveis! A cada
+            rodada, elas são embaralhadas e 20 são selecionadas aleatoriamente.
+          </p>
+
+          <p>
+            🔥 Após pressionar STOP, o cronômetro é reiniciado automaticamente.
+            Você deve passar para o próximo jogador o mais rápido possível.
           </p>
 
           <p>
